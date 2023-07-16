@@ -1,23 +1,16 @@
 package puzzle;
 
-
-
-import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class PuzzleSolver {
-
   private static final int NUM_PIECES_X = 4;
   private static final int NUM_PIECES_Y = 4;
   private static final String INPUT_FOLDER = "img/input/";
   private static final String OUTPUT_FOLDER = "img/output/";
-
 
   public void solvePuzzle() {
     BufferedImage[] puzzlePieces = loadPuzzlePieces();
@@ -26,7 +19,6 @@ public class PuzzleSolver {
     saveImage(solvedPuzzle, OUTPUT_FOLDER + "solved_puzzle.jpg");
     System.out.println("Puzzle solved and saved successfully!");
   }
-
 
   private BufferedImage solvePuzzle(BufferedImage[][] puzzleGrid) {
     int puzzleWidth = puzzleGrid[0][0].getWidth() * NUM_PIECES_X;
@@ -46,7 +38,6 @@ public class PuzzleSolver {
     return solvedPuzzle;
   }
 
-
   private BufferedImage[] loadPuzzlePieces() {
     File inputFolder = new File(INPUT_FOLDER);
     File[] imageFiles = inputFolder.listFiles((dir, name) -> name.endsWith(".jpg"));
@@ -62,7 +53,6 @@ public class PuzzleSolver {
     return puzzlePieces;
   }
 
-
   private BufferedImage[][] createPuzzleGrid(BufferedImage[] puzzlePieces) {
     BufferedImage[][] puzzleGrid = new BufferedImage[NUM_PIECES_X][NUM_PIECES_Y];
 
@@ -73,7 +63,6 @@ public class PuzzleSolver {
     }
     return puzzleGrid;
   }
-
 
   private void saveImage(BufferedImage image, String outputPath) {
     File outputFile = new File(outputPath);
